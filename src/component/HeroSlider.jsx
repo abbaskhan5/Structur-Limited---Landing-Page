@@ -27,6 +27,7 @@ const slides = [
 
 const HeroSection = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isSignUpModalOpen, setIsSignUpModalOpen] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -43,6 +44,14 @@ const HeroSection = () => {
     setCurrentSlide((prevSlide) => (prevSlide - 1 + slides.length) % slides.length);
   };
 
+  const openSignUpModal = () => {
+    setIsSignUpModalOpen(true);
+  };
+
+  const closeSignUpModal = () => {
+    setIsSignUpModalOpen(false);
+  };
+
   return (
     <section className="relative flex flex-col md:flex-row items-center justify-between py-20 px-4 md:px-16 bg-gray-100 h-[90vh] overflow-hidden">
       {/* Text Section */}
@@ -54,7 +63,7 @@ const HeroSection = () => {
         <p className="text-gray-600 mb-6">
           {slides[currentSlide].description}
         </p>
-        <button className="bg-[#4CAF4F] text-white px-6 py-2 rounded">
+        <button onClick={openSignUpModal} className="bg-[#4CAF4F] text-white px-6 py-2 rounded">
           {slides[currentSlide].buttonText}
         </button>
       </div>
@@ -86,6 +95,26 @@ const HeroSection = () => {
           />
         ))}
       </div>
+
+      {/* Sign Up Modal */}
+      {isSignUpModalOpen && (
+        <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50">
+          <div className="bg-white p-8 rounded shadow-lg max-w-sm w-full">
+            <h2 className="text-xl mb-4">Sign Up</h2>
+            <input type="text" placeholder="Full Name" className="w-full mb-4 p-2 border rounded" />
+            <input type="email" placeholder="Email" className="w-full mb-4 p-2 border rounded" />
+            <input type="password" placeholder="Password" className="w-full mb-4 p-2 border rounded" />
+            <div className="flex justify-end">
+              <button onClick={closeSignUpModal} className="mr-4 px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">
+                Cancel
+              </button>
+              <button className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">
+                Sign Up
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };
