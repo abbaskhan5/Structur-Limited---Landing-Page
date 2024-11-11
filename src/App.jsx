@@ -1,3 +1,4 @@
+import BlogSection from './component/Bloge'
 import TestimonialSection from './component/ComponyPro'
 import DesignYourweb from './component/DesignYour'
 import TwoColumnSection from './component/Feature'
@@ -12,6 +13,7 @@ function App() {
 
   return (
     <>
+
       <Navebar/>
       <HeroSlider/>
       <Ourclient/>
@@ -20,6 +22,7 @@ function App() {
       <DesignYourweb/>
       <TestimonialSection/>
       <Ourtem/>
+      <BlogSection/>
       <Footer/>
     </>
   )
